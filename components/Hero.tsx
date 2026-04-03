@@ -112,10 +112,10 @@ export function Hero() {
               initial={{ opacity: 0, y: 30, scale: 0.96 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ delay: 3.4, duration: 1.05 }}
-              className="relative min-h-[620px]"
+              className="relative flex min-h-[620px] flex-col justify-end gap-6 py-6 lg:items-end"
             >
               <motion.div
-                className="absolute right-[4%] top-[4%] w-full max-w-[450px]"
+                className="relative w-full max-w-[450px] pb-12 lg:pb-16"
                 animate={{ y: [0, -6, 0] }}
                 transition={{ duration: 9.6, repeat: Infinity, ease: "easeInOut" }}
               >
@@ -159,7 +159,7 @@ export function Hero() {
               </motion.div>
 
               <motion.div
-                className="absolute bottom-[4%] right-[4%] w-full max-w-[430px] rounded-[32px] border border-white/12 bg-[linear-gradient(180deg,rgba(14,16,24,0.34),rgba(10,10,14,0.12))] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.18)] backdrop-blur-[10px] md:p-8"
+                className="relative w-full max-w-[430px] rounded-[32px] border border-white/12 bg-[linear-gradient(180deg,rgba(14,16,24,0.34),rgba(10,10,14,0.12))] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.18)] backdrop-blur-[10px] md:p-8"
                 animate={{ y: [0, 8, 0] }}
                 transition={{ duration: 8.8, repeat: Infinity, ease: "easeInOut" }}
               >
