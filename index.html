@@ -1,0 +1,1009 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>李佳成 · Personal Editions 2026</title>
+  <meta name="description" content="李佳成 — AI训练师 / 模型评测 / 数据标注" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --crimson: #8b1a2a;
+      --crimson-light: #c0263a;
+      --cream: #f5f0eb;
+      --ink: #0c0809;
+      --ink-mid: #180d10;
+      --text: rgba(245, 240, 235, 0.92);
+      --text-muted: rgba(245, 240, 235, 0.55);
+      --border: rgba(245, 240, 235, 0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--ink);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ─── LOADER ─── */
+    #loader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: var(--ink);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+    #loader.hide { opacity: 0; visibility: hidden; }
+
+    .loader-ring {
+      position: relative;
+      width: 120px;
+      height: 120px;
+    }
+    .loader-ring svg {
+      position: absolute;
+      inset: 0;
+      animation: spin 2.4s linear infinite;
+    }
+    .loader-ring svg.reverse { animation-direction: reverse; animation-duration: 3.6s; }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .loader-rose {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .loader-rose svg {
+      width: 48px;
+      height: 48px;
+      animation: roseBreath 2.4s ease-in-out infinite;
+    }
+    @keyframes roseBreath {
+      0%, 100% { transform: scale(0.92); opacity: 0.7; }
+      50% { transform: scale(1.05); opacity: 1; }
+    }
+
+    .loader-text {
+      margin-top: 32px;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      animation: fadeInUp 1s ease 0.5s both;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── TICKER ─── */
+    .ticker-wrap {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      height: 36px;
+      background: rgba(12, 8, 9, 0.6);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+    .ticker-track {
+      display: flex;
+      white-space: nowrap;
+      animation: ticker 22s linear infinite;
+    }
+    .ticker-track span {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: 0 40px;
+    }
+    .ticker-track span em {
+      font-style: normal;
+      color: var(--crimson-light);
+    }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 36px;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 12px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.4s ease, backdrop-filter 0.4s ease;
+    }
+    nav.scrolled {
+      background: rgba(12, 8, 9, 0.75);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+    .nav-badge {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      color: var(--ink);
+      background: var(--cream);
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+    .nav-name {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+    .nav-name strong {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+      letter-spacing: 0.03em;
+    }
+    .nav-name span {
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 6px 14px;
+      border-radius: 20px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--text);
+      background: rgba(245, 240, 235, 0.07);
+    }
+
+    /* ─── HERO ─── */
+    #home {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: -5%;
+      background-image: url('bg-rose.jpg');
+      background-size: cover;
+      background-position: center;
+      animation: kenBurns 18s ease-in-out infinite alternate;
+      filter: brightness(0.52) saturate(1.15);
+    }
+    @keyframes kenBurns {
+      0%   { transform: scale(1.08) translate(0, 0); }
+      33%  { transform: scale(1.13) translate(-1.5%, 1%); }
+      66%  { transform: scale(1.06) translate(1%, -1.5%); }
+      100% { transform: scale(1.11) translate(-0.5%, 0.5%); }
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        160deg,
+        rgba(12, 8, 9, 0.1) 0%,
+        rgba(12, 8, 9, 0.35) 45%,
+        rgba(12, 8, 9, 0.78) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 48px 72px;
+      max-width: 1200px;
+      margin: 0 auto;
+      opacity: 0;
+      animation: heroReveal 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.4s forwards;
+    }
+    @keyframes heroReveal {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-label {
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(56px, 9vw, 108px);
+      font-weight: 400;
+      line-height: 0.95;
+      color: var(--cream);
+      letter-spacing: -0.02em;
+    }
+    .hero-name .en {
+      display: block;
+      font-size: clamp(13px, 1.8vw, 20px);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      letter-spacing: 0.28em;
+      color: var(--text-muted);
+      margin-top: 16px;
+      text-transform: uppercase;
+    }
+
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+    .hero-meta-item {
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hero-meta-item::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--crimson-light);
+      flex-shrink: 0;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      right: 48px;
+      bottom: 72px;
+      writing-mode: vertical-rl;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .hero-scroll::after {
+      content: '';
+      width: 1px;
+      height: 48px;
+      background: var(--border);
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+    @keyframes scrollLine {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+
+    /* ─── SECTION BASE ─── */
+    section { padding: 96px 48px; max-width: 1200px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--crimson-light);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .section-label::before {
+      content: '';
+      width: 32px;
+      height: 1px;
+      background: var(--crimson-light);
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--cream);
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
+    }
+
+    /* ─── ABOUT ─── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .about-bio {
+      font-size: 15px;
+      line-height: 1.85;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+    .about-bio strong { color: var(--text); font-weight: 500; }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .stat-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      background: rgba(245, 240, 235, 0.025);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .stat-card:hover {
+      border-color: rgba(245, 240, 235, 0.22);
+      background: rgba(245, 240, 235, 0.04);
+    }
+    .stat-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: var(--cream);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-label { font-size: 11px; color: var(--text-muted); letter-spacing: 0.08em; }
+
+    .skills-grid { display: flex; flex-direction: column; gap: 18px; }
+    .skill-row { display: flex; flex-direction: column; gap: 8px; }
+    .skill-name {
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+    }
+    .skill-bar {
+      height: 2px;
+      background: rgba(245, 240, 235, 0.08);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .skill-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--crimson), var(--crimson-light));
+      border-radius: 2px;
+      transition: width 1.1s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    /* ─── PROJECTS ─── */
+    #projects {
+      background: var(--ink-mid);
+      max-width: 100%;
+      padding: 96px 0;
+    }
+    #projects .inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+    .projects-intro {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.12;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    .projects-sub {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 520px;
+      margin-bottom: 64px;
+    }
+
+    .project-card {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 24px;
+      background: rgba(245, 240, 235, 0.02);
+      transition: border-color 0.3s;
+    }
+    .project-card:hover { border-color: rgba(245, 240, 235, 0.2); }
+
+    .project-header {
+      padding: 40px 48px 32px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 32px;
+      align-items: start;
+    }
+    .project-category {
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--crimson-light);
+      margin-bottom: 14px;
+    }
+    .project-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(22px, 3vw, 34px);
+      font-weight: 400;
+      color: var(--cream);
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+    }
+    .project-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 500px;
+    }
+    .project-year {
+      font-family: 'Playfair Display', serif;
+      font-size: 52px;
+      font-weight: 400;
+      color: rgba(245, 240, 235, 0.07);
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .project-body {
+      padding: 0 48px 40px;
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .project-col { padding: 32px 0; }
+    .project-col:first-child { padding-right: 48px; border-right: 1px solid var(--border); }
+    .project-col:last-child { padding-left: 48px; }
+    .project-col-label {
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+    .project-col-text { font-size: 14px; color: var(--text); line-height: 1.7; }
+    .project-col-text strong { color: var(--cream); }
+
+    .project-tags {
+      padding: 20px 48px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .tag {
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 5px 14px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .tag:hover { border-color: rgba(245,240,235,0.25); color: var(--text); }
+
+    /* ─── NOTES ─── */
+    .notes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+    }
+    .note-card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      background: rgba(245, 240, 235, 0.02);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .note-card:hover {
+      border-color: rgba(245, 240, 235, 0.2);
+      transform: translateY(-3px);
+    }
+    .note-date {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: var(--crimson-light);
+      margin-bottom: 12px;
+    }
+    .note-title {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--cream);
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+    .note-excerpt { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+
+    /* ─── CONTACT ─── */
+    #contact { text-align: center; padding: 120px 48px; }
+    .contact-big {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 400;
+      color: var(--cream);
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin-bottom: 24px;
+    }
+    .contact-sub {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 48px;
+      line-height: 1.7;
+    }
+    .contact-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      color: var(--text);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 12px 28px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .contact-btn:hover {
+      border-color: rgba(245, 240, 235, 0.3);
+      background: rgba(245, 240, 235, 0.05);
+    }
+    .contact-btn.primary {
+      background: var(--crimson);
+      border-color: var(--crimson);
+    }
+    .contact-btn.primary:hover {
+      background: var(--crimson-light);
+      border-color: var(--crimson-light);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-copy { font-size: 11px; color: var(--text-muted); letter-spacing: 0.06em; }
+    .footer-red { font-size: 11px; color: var(--text-muted); letter-spacing: 0.06em; }
+    .footer-red span { color: var(--crimson-light); }
+
+    /* ─── REVEAL ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1),
+                  transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── MOBILE ─── */
+    @media (max-width: 768px) {
+      nav { padding: 12px 20px; }
+      .nav-links { display: none; }
+      section { padding: 64px 20px; }
+      .hero-content { padding: 0 20px 56px; }
+      .hero-scroll { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .about-stats { grid-template-columns: 1fr 1fr; }
+      #projects .inner { padding: 0 20px; }
+      .project-header { grid-template-columns: 1fr; gap: 0; }
+      .project-year { display: none; }
+      .project-body { grid-template-columns: 1fr; }
+      .project-col:first-child {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding-right: 0; padding-bottom: 24px;
+      }
+      .project-col:last-child { padding-left: 0; padding-top: 24px; }
+      .project-header, .project-body, .project-tags { padding-left: 24px; padding-right: 24px; }
+      .notes-grid { grid-template-columns: 1fr; }
+      #contact { padding: 80px 20px; }
+      footer { flex-direction: column; gap: 12px; text-align: center; padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-ring">
+    <svg viewBox="0 0 120 120" fill="none">
+      <circle cx="60" cy="60" r="54" stroke="rgba(245,240,235,0.12)" stroke-width="1" stroke-dasharray="6 6"/>
+    </svg>
+    <svg viewBox="0 0 120 120" fill="none" class="reverse" style="inset:12px;width:calc(100% - 24px);height:calc(100% - 24px);">
+      <circle cx="54" cy="54" r="48" stroke="rgba(192,38,58,0.65)" stroke-width="1.5" stroke-dasharray="16 26" stroke-linecap="round"/>
+    </svg>
+    <div class="loader-rose">
+      <svg viewBox="0 0 48 48" fill="none">
+        <!-- simplified rose outline -->
+        <path d="M24 40 C24 40 11 31 11 20 C11 13.4 17 9 24 9 C31 9 37 13.4 37 20 C37 31 24 40 24 40Z"
+              stroke="rgba(192,38,58,0.9)" stroke-width="1.4" fill="none"/>
+        <path d="M24 9 C24 9 19.5 15 19.5 20 C19.5 25.5 24 29 24 29 C24 29 28.5 25.5 28.5 20 C28.5 15 24 9 24 9Z"
+              stroke="rgba(192,38,58,0.55)" stroke-width="1.2" fill="none"/>
+        <path d="M13 18 C16 16 20 18 22 21 M35 18 C32 16 28 18 26 21"
+              stroke="rgba(192,38,58,0.45)" stroke-width="1" stroke-linecap="round"/>
+        <path d="M24 40 L24 46" stroke="rgba(192,38,58,0.5)" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M22 43 L19 47 M26 43 L29 47" stroke="rgba(192,38,58,0.35)" stroke-width="1" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+  <div class="loader-text">Personal Editions 2026</div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <span>AI 训练师 · <em>模型评测</em> · 数据标注 · Agent场景优化 · Function Calling · 李佳成 · <em>LIJIACHENG</em> · Hangzhou · 2026 · AI 训练师 · <em>模型评测</em> · 数据标注 · Agent场景优化 · Function Calling · 李佳成 · <em>LIJIACHENG</em> · Hangzhou · 2026 ·</span>
+    <span>AI 训练师 · <em>模型评测</em> · 数据标注 · Agent场景优化 · Function Calling · 李佳成 · <em>LIJIACHENG</em> · Hangzhou · 2026 · AI 训练师 · <em>模型评测</em> · 数据标注 · Agent场景优化 · Function Calling · 李佳成 · <em>LIJIACHENG</em> · Hangzhou · 2026 ·</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#home" class="nav-brand">
+    <span class="nav-badge">TWENTY SIX</span>
+    <div class="nav-name">
+      <strong>李佳成</strong>
+      <span>LIJIACHENG</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#home" class="active">首页</a></li>
+    <li><a href="#about">关于我</a></li>
+    <li><a href="#projects">项目经历</a></li>
+    <li><a href="#notes">灵感随笔</a></li>
+    <li><a href="#contact">联系方式</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-label">Personal Editions 2026 · AI Trainer</div>
+    <h1 class="hero-name">
+      李佳成
+      <span class="en">Li Jiacheng</span>
+    </h1>
+    <div class="hero-meta">
+      <span class="hero-meta-item">AI 训练师</span>
+      <span class="hero-meta-item">模型评测</span>
+      <span class="hero-meta-item">数据标注</span>
+      <span class="hero-meta-item">杭州</span>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</div>
+
+<hr class="section-divider" />
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div>
+      <div class="section-label reveal">ABOUT</div>
+      <h2 class="section-title reveal">聚焦大模型数据，<br/>把 AI 训练得更好用。</h2>
+      <p class="about-bio reveal">
+        拥有约 <strong>2 年 AI 训练与模型评测</strong>相关经验，聚焦大模型数据处理、效果评测、标注质检与 Agent 场景优化，
+        具备较强的规则理解、问题归因与结果复盘能力。
+      </p>
+      <p class="about-bio reveal" style="margin-top:-16px;">
+        擅长围绕<strong>准确性、完整性、事实性、安全性、一致性</strong>等维度对模型输出进行深度分析，
+        沉淀 Bad Case 并推动提示词与流程持续迭代。曾带领 <strong>5 人小组</strong>完成阶段性标注与评测任务。
+      </p>
+      <div class="about-stats reveal">
+        <div class="stat-card">
+          <div class="stat-value">2+</div>
+          <div class="stat-label">年 AI 训练经验</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">98%</div>
+          <div class="stat-label">项目准确率</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">5人</div>
+          <div class="stat-label">小组带领规模</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">Agent</div>
+          <div class="stat-label">场景专项经验</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <div class="section-label">核心能力</div>
+      <div class="skills-grid">
+        <div class="skill-row">
+          <div class="skill-name"><span>模型评测</span><span>Expert</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" data-width="0.93"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-name"><span>数据标注 & 质检</span><span>Expert</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" data-width="0.91"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-name"><span>Agent 场景优化</span><span>Advanced</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" data-width="0.86"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-name"><span>Prompt 迭代</span><span>Advanced</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" data-width="0.83"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-name"><span>团队管理 & 协同</span><span>Proficient</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" data-width="0.79"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-name"><span>自动化工具开发</span><span>Proficient</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" data-width="0.73"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- PROJECTS -->
+<div id="projects">
+  <div class="inner">
+    <div class="section-label reveal">PROJECTS</div>
+    <p class="projects-intro reveal">Selected releases<br/>presented as flagship<br/>moments.</p>
+    <p class="projects-sub reveal">每个项目都是一个完整的交付单元：一个挑战、一个视角、一个角色、一个可量化的结果。</p>
+
+    <div class="project-card reveal">
+      <div class="project-header">
+        <div>
+          <div class="project-category">Agent · Function Calling</div>
+          <h3 class="project-title">Agent 智能问答助手<br/>训练与评测项目</h3>
+          <p class="project-desc">面向 Agent 场景的 Function Calling 数据构建与效果评测，重点围绕工具调用意图识别、参数提取与调用链路稳定性开展数据构建和效果验证。</p>
+        </div>
+        <div class="project-year">2025</div>
+      </div>
+      <div class="project-body">
+        <div class="project-col">
+          <div class="project-col-label">My Role</div>
+          <div class="project-col-text">训练数据构建 · 效果评测 · Bad Case 归类 · Prompt 优化 · 5人小组带领 · 任务拆分与进度跟进</div>
+        </div>
+        <div class="project-col">
+          <div class="project-col-label">Outcome</div>
+          <div class="project-col-text">项目正确率达到 <strong>98%</strong>，持续提升工具调用准确性与多轮交互体验，形成可复用评测标准与问题台账。</div>
+        </div>
+      </div>
+      <div class="project-tags">
+        <span class="tag">Function Calling</span>
+        <span class="tag">数据标注</span>
+        <span class="tag">模型评测</span>
+        <span class="tag">Bad Case 分析</span>
+        <span class="tag">Prompt 迭代</span>
+        <span class="tag">多轮对话</span>
+        <span class="tag">参数提取</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-header">
+        <div>
+          <div class="project-category">Tooling · Automation</div>
+          <h3 class="project-title">数据质检自动化工具</h3>
+          <p class="project-desc">利用 AI 辅助编写扩展程序，批量校验 JSON 格式与图片素材，将重复性人工排查流程转化为自动化。</p>
+        </div>
+        <div class="project-year">2025</div>
+      </div>
+      <div class="project-body">
+        <div class="project-col">
+          <div class="project-col-label">My Role</div>
+          <div class="project-col-text">需求分析 · AI 辅助开发 · 工具调试 · 流程集成</div>
+        </div>
+        <div class="project-col">
+          <div class="project-col-label">Outcome</div>
+          <div class="project-col-text">显著减少人工逐条排查时间，提升数据清洗效率，已应用于样本收集与素材整理类批量任务。</div>
+        </div>
+      </div>
+      <div class="project-tags">
+        <span class="tag">JSON 校验</span>
+        <span class="tag">自动化脚本</span>
+        <span class="tag">AI 辅助开发</span>
+        <span class="tag">效率工具</span>
+        <span class="tag">批量处理</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="section-divider" />
+
+<!-- NOTES -->
+<section id="notes">
+  <div class="section-label reveal">灵感随笔</div>
+  <h2 class="section-title reveal">思考与记录。</h2>
+  <div class="notes-grid">
+    <div class="note-card reveal">
+      <div class="note-date">2026 · 03</div>
+      <div class="note-title">为什么 Bad Case 比正确答案更有价值？</div>
+      <div class="note-excerpt">在模型评测中，一条错误输出背后往往藏着系统性问题。学会读懂失败，才能真正推动迭代。</div>
+    </div>
+    <div class="note-card reveal">
+      <div class="note-date">2026 · 02</div>
+      <div class="note-title">如何给 LLM 写一个"不累"的 Prompt？</div>
+      <div class="note-excerpt">好的提示词不是命令，而是一份边界清晰、意图明确的协作协议。约束越少，越需要精准。</div>
+    </div>
+    <div class="note-card reveal">
+      <div class="note-date">2026 · 01</div>
+      <div class="note-title">Agent 中的工具调用：意图识别才是核心</div>
+      <div class="note-excerpt">参数提取只是表象，真正难的是模型理解用户在"这一句话"背后真正想完成的事情。</div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label reveal" style="justify-content:center;">CONTACT</div>
+  <h2 class="contact-big reveal">有项目？有想法？<br/>来聊聊。</h2>
+  <p class="contact-sub reveal">
+    AI 训练 · 模型评测 · 数据标注 · Agent 场景优化<br/>
+    期望城市：杭州
+  </p>
+  <div class="contact-links reveal">
+    <a href="mailto:1308760795@qq.com" class="contact-btn primary">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+        <path d="M4 4h16v16H4V4Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+        <path d="M4 4l8 9 8-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      1308760795@qq.com
+    </a>
+    <a href="#" class="contact-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+      </svg>
+      微信：a1308760795
+    </a>
+    <a href="#" class="contact-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+        <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+      </svg>
+      小红书 @2619057995
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-copy">© 2026 李佳成 · Personal Editions</span>
+  <span class="footer-red">小红书 <span>@2619057995</span></span>
+</footer>
+
+<script>
+  // LOADER
+  document.body.style.overflow = 'hidden';
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('loader').classList.add('hide');
+      document.body.style.overflow = '';
+    }, 2400);
+  });
+
+  // NAV scroll + active
+  const nav = document.getElementById('mainNav');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const sectionIds = ['home','about','projects','notes','contact'];
+
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+    let current = 'home';
+    sectionIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && window.scrollY >= el.offsetTop - 140) current = id;
+    });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  });
+
+  // REVEAL on scroll
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        revealObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // SKILL BARS animate
+  const skillObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const w = parseFloat(e.target.dataset.width || 1);
+        e.target.style.width = (w * 100) + '%';
+        skillObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.skill-bar-fill').forEach(b => skillObserver.observe(b));
+
+  // SMOOTH scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+</script>
+</body>
+</html>

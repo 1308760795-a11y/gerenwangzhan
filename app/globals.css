@@ -1,0 +1,165 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --bg: #05060b;
+  --text: #f7f8fb;
+  --bg-shift-x: 0px;
+  --bg-shift-y: 0px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #07080d;
+  color: var(--text);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: -24px;
+  background-image: url("/rose-background-hires.jpg");
+  background-size: cover;
+  background-position: center;
+  opacity: 1;
+  z-index: -2;
+  transform: translate3d(var(--bg-shift-x), var(--bg-shift-y), 0) scale(1.06);
+  will-change: transform;
+  animation: backgroundFloat 11s ease-in-out infinite alternate;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(8, 8, 12, 0.1) 0%, rgba(8, 8, 12, 0.02) 24%, rgba(8, 8, 12, 0.12) 100%),
+    radial-gradient(circle at 50% 24%, rgba(255, 255, 255, 0.03), transparent 28%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+::selection {
+  background: rgba(124, 232, 255, 0.22);
+  color: #f7f8fb;
+}
+
+.section-shell {
+  @apply relative mx-auto w-[calc(100%-24px)] max-w-[1280px] md:w-[calc(100%-40px)];
+}
+
+.glass-panel {
+  @apply border border-white/10 bg-[rgba(8,10,16,0.28)] shadow-panel backdrop-blur-[18px];
+}
+
+.display-title {
+  @apply font-display tracking-[-0.06em] text-white;
+}
+
+.section-kicker {
+  @apply font-display text-[0.72rem] uppercase tracking-[0.28em] text-white/50;
+}
+
+.soft-grid {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.95));
+}
+
+.noise-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02), rgba(255,255,255,0.005)),
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.04), transparent 24%);
+  opacity: 0.18;
+  pointer-events: none;
+}
+
+@keyframes backgroundFloat {
+  0% {
+    transform: translate3d(calc(var(--bg-shift-x) - 24px), calc(var(--bg-shift-y) - 10px), 0) scale(1.06);
+  }
+  100% {
+    transform: translate3d(calc(var(--bg-shift-x) + 24px), calc(var(--bg-shift-y) + 10px), 0) scale(1.1);
+  }
+}
+
+.petal {
+  position: absolute;
+  top: -8%;
+  display: block;
+  border-radius: 70% 30% 70% 30%;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(186, 44, 88, 0.95), rgba(109, 12, 44, 0.94) 60%, rgba(47, 6, 18, 0.96));
+  box-shadow:
+    inset -2px -3px 6px rgba(26, 5, 10, 0.35),
+    0 8px 18px rgba(25, 0, 8, 0.18);
+  opacity: 0;
+  filter: blur(0.2px);
+  animation-name: petalFall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes petalFall {
+  0% {
+    transform: translate3d(0, -8vh, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.72;
+  }
+  50% {
+    transform: translate3d(26px, 48vh, 0) rotate(140deg);
+    opacity: 0.62;
+  }
+  100% {
+    transform: translate3d(-30px, 108vh, 0) rotate(320deg);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
