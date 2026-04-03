@@ -10,7 +10,7 @@ export function ExperienceSection() {
         <Reveal className="glass-panel rounded-[32px] p-8 md:p-10">
           <p className="section-kicker">Experience</p>
           <h2 className="display-title mt-5 max-w-[11ch] text-4xl leading-[0.98] md:text-6xl">
-            Built across strategy rooms, product teams, and launch cycles.
+            从基础标注到 AI 训练师，经历一直在往更高责任走。
           </h2>
 
           <div className="mt-10 space-y-7">
@@ -38,7 +38,7 @@ export function ExperienceSection() {
           </Reveal>
 
           <Reveal className="glass-panel rounded-[32px] p-8 md:p-10" delay={0.16}>
-            <p className="section-kicker">Core Skills</p>
+            <p className="section-kicker">Skills & Methods</p>
             <div className="mt-6 flex flex-wrap gap-3">
               {experience.skills.map((skill) => (
                 <span

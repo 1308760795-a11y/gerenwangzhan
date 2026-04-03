@@ -9,13 +9,14 @@ import { OpeningLoader } from "@/components/OpeningLoader";
 import { PetalOverlay } from "@/components/PetalOverlay";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { WritingSection } from "@/components/WritingSection";
+import { siteContent } from "@/data/site";
 
 export default function Home() {
   return (
     <>
       <BackgroundParallax />
       <PetalOverlay />
-      <OpeningLoader brand="Li Jiacheng" />
+      <OpeningLoader brand={siteContent.brand.chineseName} />
       <Header />
       <main className="relative pb-16">
         <Hero />

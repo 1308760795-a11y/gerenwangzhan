@@ -13,10 +13,10 @@ export function ProjectsSection() {
           <p className="section-kicker">Projects</p>
           <div className="mt-5 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <h2 className="display-title max-w-[10ch] text-4xl leading-[0.96] md:text-6xl">
-              Selected releases presented as flagship moments.
+              用真实项目和量化结果证明我的工作价值。
             </h2>
             <p className="max-w-[34ch] text-sm leading-7 text-white/60 md:text-base">
-              Each project is framed as a distinct release unit: a challenge, a point of view, a role, and a measurable outcome.
+              下面这几类项目基本覆盖了我目前最有代表性的能力范围：多模态数据构建、Agent 训练评测，以及工具化提效。
             </p>
           </div>
         </Reveal>
@@ -43,7 +43,7 @@ export function ProjectsSection() {
                       </div>
                       <div className="flex flex-wrap gap-2">
                         <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-xs uppercase tracking-[0.2em] text-white/48">
-                          Release {index + 1}
+                          Project 0{index + 1}
                         </span>
                         <span className="rounded-full border border-cyan/15 bg-cyan/5 px-3 py-2 text-xs uppercase tracking-[0.2em] text-white/54">
                           {project.status}
@@ -80,7 +80,7 @@ export function ProjectsSection() {
                         href="#contact"
                         className="mt-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-5 py-3 text-sm text-white transition hover:bg-white/[0.08]"
                       >
-                        View Details
+                        联系聊项目
                         <ArrowUpRight size={16} />
                       </a>
                     </div>

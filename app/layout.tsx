@@ -14,20 +14,21 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Li Jiacheng | Personal Editions",
+  title: "李佳成 | AI 训练师 / 模型评测 / 多模态数据构建",
   description:
-    "Immersive personal brand website and editorial portfolio experience for Li Jiacheng.",
+    "李佳成的个人网站，聚焦 AI 训练、模型评测、Agent 工具调用与多模态数据构建。",
   keywords: [
-    "portfolio",
-    "personal brand",
-    "creative developer",
-    "design engineer",
-    "interactive website",
+    "AI训练师",
+    "模型评测",
+    "多模态数据构建",
+    "Agent",
+    "Function Calling",
+    "数据标注",
   ],
   openGraph: {
-    title: "Li Jiacheng | Personal Editions",
+    title: "李佳成 | AI 训练师 / 模型评测 / 多模态数据构建",
     description:
-      "A launch-style personal portfolio blending editorial rhythm, immersive motion, and digital craft.",
+      "聚焦 Agent 工具调用、多模态图文对话、数据质量管控与自动化提效的个人网站。",
     type: "website",
   },
 };
@@ -38,7 +39,7 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="zh-CN" suppressHydrationWarning>
       <body className={`${manrope.variable} ${spaceGrotesk.variable} bg-ink font-sans text-white`}>
         {children}
       </body>

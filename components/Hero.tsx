@@ -25,6 +25,15 @@ export function Hero() {
                 {brand.edition}
               </motion.p>
 
+              <motion.p
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 3.1, duration: 0.7 }}
+                className="mt-4 max-w-[34ch] text-sm uppercase tracking-[0.2em] text-white/54"
+              >
+                {brand.role}
+              </motion.p>
+
               <div className="mt-5 space-y-1">
                 {brand.heroLines.map((line, index) => (
                   <motion.div
@@ -70,6 +79,7 @@ export function Hero() {
                   <a
                     key={cta.href}
                     href={cta.href}
+                    download={cta.download}
                     className={`group inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm transition ${
                       index === 0
                         ? "border border-white/14 bg-[rgba(255,255,255,0.04)] text-white"
@@ -95,16 +105,16 @@ export function Hero() {
                 transition={{ duration: 8.8, repeat: Infinity, ease: "easeInOut" }}
               >
                 <p className="font-display text-[0.68rem] uppercase tracking-[0.24em] text-white/44">
-                  Current Frame
+                  {brand.heroCardKicker}
                 </p>
                 <h2 className="mt-4 max-w-[10ch] font-display text-3xl leading-[0.96] text-white md:text-5xl">
-                  聚焦大模型数据，让 AI 更好用。
+                  {brand.heroCardTitle}
                 </h2>
                 <p className="mt-5 max-w-[28ch] text-sm leading-7 text-white/72">
-                  2 年 AI 训练与模型评测经验，专注 Agent 场景优化与 Bad Case 驱动的迭代。
+                  {brand.heroCardText}
                 </p>
                 <div className="mt-6 flex flex-wrap gap-2">
-                  {["26 岁", "杭州", "2026 Edition"].map((item) => (
+                  {brand.heroCardTags.map((item) => (
                     <span
                       key={item}
                       className="rounded-full border border-white/12 bg-white/8 px-3 py-2 text-[11px] uppercase tracking-[0.18em] text-white/66"
@@ -113,6 +123,7 @@ export function Hero() {
                     </span>
                   ))}
                 </div>
+                <p className="mt-6 text-xs uppercase tracking-[0.22em] text-white/44">{brand.heroCardNote}</p>
               </motion.div>
             </motion.div>
           </div>
