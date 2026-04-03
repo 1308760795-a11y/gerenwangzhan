@@ -12,30 +12,29 @@ export function Header() {
   const navItems = useMemo(() => sections, []);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 18);
+    const updateActiveSection = () => {
+      setScrolled(window.scrollY > 18);
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActive(entry.target.id);
-          }
-        });
-      },
-      { threshold: 0.45, rootMargin: "-10% 0px -35% 0px" }
-    );
+      const probeLine = window.scrollY + 180;
+      let current = navItems[0]?.id ?? "top";
 
-    navItems.forEach(({ id }) => {
-      const node = document.getElementById(id);
-      if (node) observer.observe(node);
-    });
+      navItems.forEach(({ id }) => {
+        const node = document.getElementById(id);
+        if (node && node.offsetTop <= probeLine) {
+          current = id;
+        }
+      });
 
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
+      setActive(current);
+    };
+
+    updateActiveSection();
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    window.addEventListener("resize", updateActiveSection);
 
     return () => {
-      observer.disconnect();
-      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("scroll", updateActiveSection);
+      window.removeEventListener("resize", updateActiveSection);
     };
   }, [navItems]);
 
