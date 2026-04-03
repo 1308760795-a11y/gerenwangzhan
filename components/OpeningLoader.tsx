@@ -97,7 +97,7 @@ export function OpeningLoader({ brand }: OpeningLoaderProps) {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.75, delay: 1.05 }}
                 >
-                  Personal Editions 2026
+                  AI TRAINER PORTFOLIO 2026
                 </motion.p>
               </div>
             </motion.div>

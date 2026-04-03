@@ -19,7 +19,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-manrope)"],
-        display: ["var(--font-space-grotesk)"],
+        display: ["var(--font-noto-serif-sc)"],
       },
       boxShadow: {
         halo: "0 20px 80px rgba(0,0,0,0.35)",

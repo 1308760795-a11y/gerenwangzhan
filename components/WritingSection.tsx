@@ -9,7 +9,7 @@ export function WritingSection() {
         <Reveal>
           <p className="section-kicker">Strengths</p>
           <div className="mt-5 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
-            <h2 className="display-title max-w-[11ch] text-4xl leading-[0.96] md:text-6xl">
+            <h2 className="display-title editorial-rule max-w-[11ch] text-4xl leading-[0.96] md:text-6xl">
               这些经历说明我不只会做任务，也能把任务做稳。
             </h2>
             <p className="max-w-[34ch] text-sm leading-7 text-white/60 md:text-base">

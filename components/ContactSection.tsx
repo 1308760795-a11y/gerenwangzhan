@@ -13,13 +13,13 @@ export function ContactSection() {
           <p className="section-kicker">Contact</p>
           <div className="relative z-10 mt-6 grid gap-10 lg:grid-cols-[1.15fr_0.85fr]">
             <div>
-              <h2 className="display-title max-w-[11ch] text-4xl leading-[0.95] md:text-7xl">
+              <h2 className="display-title editorial-rule max-w-[11ch] text-4xl leading-[0.95] md:text-7xl">
                 {contact.outro}
               </h2>
             </div>
             <div className="space-y-7">
               <div className="grid gap-4 md:grid-cols-2">
-                <div className="rounded-[24px] border border-white/10 bg-white/[0.04] p-5">
+                <div className="surface-note">
                   <p className="text-xs uppercase tracking-[0.24em] text-white/38">Email</p>
                   <a
                     href={`mailto:${contact.email}`}
@@ -29,7 +29,7 @@ export function ContactSection() {
                   </a>
                 </div>
 
-                <div className="rounded-[24px] border border-white/10 bg-white/[0.04] p-5">
+                <div className="surface-note">
                   <p className="text-xs uppercase tracking-[0.24em] text-white/38">Phone</p>
                   <a
                     href={`tel:${contact.phone}`}

@@ -9,16 +9,16 @@ export function AboutSection() {
       <div className="section-shell grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
         <Reveal className="glass-panel rounded-[32px] p-8 md:p-10">
           <p className="section-kicker">Profile</p>
-          <h2 className="display-title mt-5 max-w-[10ch] text-4xl leading-[0.98] md:text-6xl">
+          <h2 className="display-title editorial-rule mt-5 max-w-[10ch] text-4xl leading-[0.98] md:text-6xl">
             能做数据构建，也能把质量标准真正落下来。
           </h2>
-          <p className="mt-6 max-w-[58ch] text-base leading-8 text-white/68 md:text-lg">
+          <p className="mt-12 max-w-[58ch] text-base leading-8 text-white/68 md:text-lg">
             {about.intro}
           </p>
 
           <div className="mt-10 grid gap-4 md:grid-cols-3">
             {about.metrics.map((metric) => (
-              <div key={metric.label} className="rounded-[24px] border border-white/8 bg-white/[0.03] p-5">
+              <div key={metric.label} className="surface-note">
                 <p className="font-display text-4xl tracking-[-0.06em] text-white">{metric.value}</p>
                 <p className="mt-3 text-sm leading-6 text-white/58">{metric.label}</p>
               </div>
@@ -26,14 +26,14 @@ export function AboutSection() {
           </div>
 
           <div className="mt-10 grid gap-4 md:grid-cols-[0.9fr_1.1fr]">
-            <div className="rounded-[24px] border border-white/8 bg-white/[0.03] p-5">
+            <div className="surface-note">
               <p className="text-xs uppercase tracking-[0.22em] text-white/42">教育背景</p>
               <h3 className="mt-3 font-display text-2xl text-white">{about.education.school}</h3>
               <p className="mt-2 text-sm leading-7 text-white/62">{about.education.major}</p>
               <p className="mt-1 text-sm leading-7 text-white/42">{about.education.period}</p>
             </div>
 
-            <div className="rounded-[24px] border border-white/8 bg-white/[0.03] p-5">
+            <div className="surface-note">
               <p className="text-xs uppercase tracking-[0.22em] text-white/42">常用模型与工具</p>
               <div className="mt-4 flex flex-wrap gap-2">
                 {about.tools.map((tool) => (

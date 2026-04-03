@@ -10,7 +10,7 @@ export function Hero() {
   return (
     <section id="top" className="relative min-h-screen overflow-hidden pt-28">
       <div className="section-shell relative">
-        <div className="noise-overlay relative overflow-hidden rounded-[40px] border border-white/10 bg-[rgba(7,7,10,0.06)] px-6 pb-10 pt-10 shadow-[0_30px_100px_rgba(0,0,0,0.18)] backdrop-blur-[2px] md:px-10 md:pb-14 md:pt-16">
+        <div className="noise-overlay glass-panel relative rounded-[40px] px-6 pb-10 pt-10 md:px-10 md:pb-14 md:pt-16">
           <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,8,11,0.24)_0%,rgba(7,8,11,0.05)_42%,rgba(7,8,11,0.02)_62%,rgba(7,8,11,0.1)_100%)]" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_62%_32%,rgba(255,255,255,0.04),transparent_20%),radial-gradient(circle_at_50%_68%,rgba(120,32,54,0.05),transparent_24%)]" />
 
@@ -25,16 +25,17 @@ export function Hero() {
                 {brand.edition}
               </motion.p>
 
-              <motion.p
+              <motion.div
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 3.1, duration: 0.7 }}
-                className="mt-4 max-w-[34ch] text-sm uppercase tracking-[0.2em] text-white/54"
+                className="mt-4 flex flex-wrap items-center gap-3"
               >
-                {brand.role}
-              </motion.p>
+                <span className="meta-chip">{brand.role}</span>
+                <span className="text-xs uppercase tracking-[0.22em] text-white/42">{brand.slogan}</span>
+              </motion.div>
 
-              <div className="mt-5 space-y-1">
+              <div className="editorial-rule mt-7 space-y-1">
                 {brand.heroLines.map((line, index) => (
                   <motion.div
                     key={line}
@@ -64,10 +65,23 @@ export function Hero() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 3.35, duration: 0.9 }}
-                className="mt-8 max-w-[620px] text-base leading-8 text-white/76 md:text-lg"
+                className="mt-12 max-w-[620px] text-base leading-8 text-white/76 md:text-lg"
               >
                 {brand.heroSubtitle}
               </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 3.44, duration: 0.9 }}
+                className="mt-8 flex flex-wrap gap-3"
+              >
+                {brand.heroPillars.map((pillar) => (
+                  <span key={pillar} className="meta-chip">
+                    {pillar}
+                  </span>
+                ))}
+              </motion.div>
 
               <motion.div
                 initial={{ opacity: 0, y: 18 }}
@@ -100,10 +114,11 @@ export function Hero() {
               className="relative min-h-[520px]"
             >
               <motion.div
-                className="absolute bottom-[12%] right-[4%] w-full max-w-[460px] rounded-[28px] border border-white/12 bg-[rgba(10,10,14,0.08)] p-6 backdrop-blur-[8px] md:p-8"
+                className="absolute bottom-[8%] right-[4%] w-full max-w-[460px] rounded-[32px] border border-white/12 bg-[linear-gradient(180deg,rgba(14,16,24,0.52),rgba(10,10,14,0.2))] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-[14px] md:p-8"
                 animate={{ y: [0, 8, 0] }}
                 transition={{ duration: 8.8, repeat: Infinity, ease: "easeInOut" }}
               >
+                <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-[#f6c88a]/50 to-transparent" />
                 <p className="font-display text-[0.68rem] uppercase tracking-[0.24em] text-white/44">
                   {brand.heroCardKicker}
                 </p>
@@ -123,7 +138,9 @@ export function Hero() {
                     </span>
                   ))}
                 </div>
-                <p className="mt-6 text-xs uppercase tracking-[0.22em] text-white/44">{brand.heroCardNote}</p>
+                <div className="mt-7 border-t border-white/8 pt-5">
+                  <p className="text-xs uppercase tracking-[0.22em] text-white/44">{brand.heroCardNote}</p>
+                </div>
               </motion.div>
             </motion.div>
           </div>

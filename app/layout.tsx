@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Manrope, Space_Grotesk } from "next/font/google";
+import { Manrope, Noto_Serif_SC } from "next/font/google";
 import type { ReactNode } from "react";
 import "./globals.css";
 
@@ -8,9 +8,10 @@ const manrope = Manrope({
   variable: "--font-manrope",
 });
 
-const spaceGrotesk = Space_Grotesk({
+const notoSerifSc = Noto_Serif_SC({
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-noto-serif-sc",
   subsets: ["latin"],
-  variable: "--font-space-grotesk",
 });
 
 export const metadata: Metadata = {
@@ -40,7 +41,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN" suppressHydrationWarning>
-      <body className={`${manrope.variable} ${spaceGrotesk.variable} bg-ink font-sans text-white`}>
+      <body className={`${manrope.variable} ${notoSerifSc.variable} bg-ink font-sans text-white`}>
         {children}
       </body>
     </html>

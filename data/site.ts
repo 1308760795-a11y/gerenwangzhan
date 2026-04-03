@@ -9,6 +9,7 @@ export const siteContent = {
     heroLines: ["让数据更贴近任务", "让质检形成闭环", "让模型持续变好"],
     heroSubtitle:
       "聚焦 Agent 工具调用、多模态图文对话和数据质量管控。做过数据构建、质检抽检、模型评测与 SOP 制定，也会用 AI 工具把重复流程做成自动化。",
+    heroPillars: ["Agent 工具调用", "多模态数据构建", "质检与规则闭环"],
     heroCardKicker: "Candidate Snapshot",
     heroCardTitle: "能做数据构建，也能把质量体系落下来",
     heroCardText:
@@ -88,6 +89,18 @@ export const siteContent = {
         "对应了我在简历里的自动化提效能力，也说明我不只会做标注，还会主动优化流程。",
       status: "内部使用中",
       tech: ["JSON 校验", "浏览器插件", "批量抓取", "自动化脚本", "AI 辅助开发", "数据清洗"],
+      showcase: [
+        {
+          src: "/sheet-preview-extension-main.png",
+          alt: "浏览器扩展预览面板截图",
+          label: "预览面板",
+        },
+        {
+          src: "/sheet-preview-extension-features.png",
+          alt: "浏览器扩展功能列表截图",
+          label: "功能说明",
+        },
+      ],
     },
   ],
   experience: {

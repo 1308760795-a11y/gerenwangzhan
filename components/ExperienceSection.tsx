@@ -9,11 +9,11 @@ export function ExperienceSection() {
       <div className="section-shell grid gap-6 lg:grid-cols-[0.92fr_1.08fr]">
         <Reveal className="glass-panel rounded-[32px] p-8 md:p-10">
           <p className="section-kicker">Experience</p>
-          <h2 className="display-title mt-5 max-w-[11ch] text-4xl leading-[0.98] md:text-6xl">
+          <h2 className="display-title editorial-rule mt-5 max-w-[11ch] text-4xl leading-[0.98] md:text-6xl">
             从基础标注到 AI 训练师，经历一直在往更高责任走。
           </h2>
 
-          <div className="mt-10 space-y-7">
+          <div className="mt-12 space-y-7">
             {experience.timeline.map((item) => (
               <div key={item.period} className="border-l border-white/10 pl-5">
                 <p className="font-display text-xs uppercase tracking-[0.22em] text-white/42">{item.period}</p>
@@ -29,7 +29,7 @@ export function ExperienceSection() {
             <p className="section-kicker">What I Can Help With</p>
             <div className="mt-6 grid gap-4 md:grid-cols-3">
               {experience.services.map((service) => (
-                <div key={service.title} className="rounded-[24px] border border-white/8 bg-white/[0.03] p-5">
+                <div key={service.title} className="surface-note">
                   <h3 className="font-display text-2xl text-white">{service.title}</h3>
                   <p className="mt-4 text-sm leading-7 text-white/62">{service.text}</p>
                 </div>

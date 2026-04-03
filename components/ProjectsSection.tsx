@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
@@ -12,7 +13,7 @@ export function ProjectsSection() {
         <Reveal>
           <p className="section-kicker">Projects</p>
           <div className="mt-5 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-            <h2 className="display-title max-w-[10ch] text-4xl leading-[0.96] md:text-6xl">
+            <h2 className="display-title editorial-rule max-w-[10ch] text-4xl leading-[0.96] md:text-6xl">
               用真实项目和量化结果证明我的工作价值。
             </h2>
             <p className="max-w-[34ch] text-sm leading-7 text-white/60 md:text-base">
@@ -30,7 +31,7 @@ export function ProjectsSection() {
                   transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                   className="glass-panel group relative overflow-hidden rounded-[30px] p-6 md:p-8 lg:p-10"
                 >
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(124,232,255,0.12),transparent_28%),radial-gradient(circle_at_bottom_right,rgba(246,200,138,0.08),transparent_24%)] opacity-80 transition-opacity duration-500 group-hover:opacity-100" />
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(124,232,255,0.1),transparent_28%),radial-gradient(circle_at_bottom_right,rgba(246,200,138,0.1),transparent_24%)] opacity-80 transition-opacity duration-500 group-hover:opacity-100" />
                   <div className="absolute inset-y-0 left-[33%] hidden w-px bg-gradient-to-b from-transparent via-white/10 to-transparent lg:block" />
                   <div className="relative z-10 grid gap-8 lg:grid-cols-[0.32fr_0.68fr] lg:gap-10">
                     <div className="flex flex-col justify-between gap-6">
@@ -52,7 +53,41 @@ export function ProjectsSection() {
                     </div>
 
                     <div>
-                      <div className="rounded-[24px] border border-white/8 bg-white/[0.03] p-5 md:p-6">
+                      {"showcase" in project && project.showcase ? (
+                        <div className="mb-6 grid gap-4 md:grid-cols-[1.35fr_0.65fr]">
+                          <div className="surface-note overflow-hidden">
+                            <div className="relative aspect-[16/9] overflow-hidden rounded-[18px] border border-white/10">
+                              <Image
+                                src={project.showcase[0].src}
+                                alt={project.showcase[0].alt}
+                                fill
+                                sizes="(max-width: 768px) 100vw, 700px"
+                                className="object-cover object-center transition duration-500 group-hover:scale-[1.02]"
+                              />
+                            </div>
+                            <p className="mt-4 text-xs uppercase tracking-[0.24em] text-white/42">
+                              {project.showcase[0].label}
+                            </p>
+                          </div>
+
+                          <div className="surface-note overflow-hidden">
+                            <div className="relative aspect-[4/5] overflow-hidden rounded-[18px] border border-white/10">
+                              <Image
+                                src={project.showcase[1].src}
+                                alt={project.showcase[1].alt}
+                                fill
+                                sizes="(max-width: 768px) 100vw, 320px"
+                                className="object-cover object-top transition duration-500 group-hover:scale-[1.02]"
+                              />
+                            </div>
+                            <p className="mt-4 text-xs uppercase tracking-[0.24em] text-white/42">
+                              {project.showcase[1].label}
+                            </p>
+                          </div>
+                        </div>
+                      ) : null}
+
+                      <div className="surface-note md:p-6">
                         <div className="grid gap-5 md:grid-cols-2">
                           <div>
                             <p className="text-sm uppercase tracking-[0.22em] text-white/38">My Role</p>

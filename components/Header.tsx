@@ -43,20 +43,22 @@ export function Header() {
     <header className="fixed inset-x-0 top-4 z-50">
       <div className="section-shell transition-all duration-500">
         <div
-          className={`flex items-center justify-between rounded-full border px-4 py-3 md:px-6 ${
+          className={`relative overflow-hidden flex items-center justify-between rounded-full border px-4 py-3 md:px-6 ${
             scrolled
-              ? "border-white/12 bg-[rgba(13,12,15,0.38)] shadow-halo backdrop-blur-2xl"
-              : "border-white/10 bg-[rgba(12,12,16,0.22)] backdrop-blur-xl"
+              ? "border-white/14 bg-[rgba(10,11,16,0.5)] shadow-halo backdrop-blur-2xl"
+              : "border-white/10 bg-[rgba(12,12,16,0.26)] backdrop-blur-xl"
           }`}
         >
+          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),transparent_34%)]" />
+
           <a href="#top" className="flex items-center gap-3">
             <div className="flex items-center gap-3">
-              <span className="rounded-full border border-white/12 bg-white/6 px-3 py-1 font-display text-[0.68rem] uppercase tracking-[0.24em] text-white/70">
+              <span className="meta-chip px-3 py-1 font-display !text-[0.68rem]">
                 {siteContent.brand.age}
               </span>
               <div className="hidden md:block">
                 <p className="font-display text-sm text-white">{siteContent.brand.chineseName}</p>
-                <p className="text-xs uppercase tracking-[0.18em] text-white/58">{siteContent.brand.name}</p>
+                <p className="text-xs uppercase tracking-[0.18em] text-white/58">{siteContent.brand.role}</p>
               </div>
             </div>
           </a>
@@ -74,7 +76,7 @@ export function Header() {
                   {isActive ? (
                     <motion.span
                       layoutId="nav-active-pill"
-                      className="absolute inset-0 rounded-full border border-white/12 bg-white/10"
+                      className="absolute inset-0 rounded-full border border-white/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.12),rgba(255,255,255,0.05))]"
                       transition={{ type: "spring", stiffness: 240, damping: 24 }}
                     />
                   ) : null}
@@ -84,9 +86,19 @@ export function Header() {
             })}
           </nav>
 
+          <div className="hidden items-center gap-3 md:flex">
+            <a
+              href="/li-jiacheng-ai-trainer-resume.docx"
+              download
+              className="rounded-full border border-white/10 bg-white/[0.05] px-4 py-2 text-sm text-white/80 transition hover:bg-white/[0.08]"
+            >
+              下载简历
+            </a>
+          </div>
+
           <button
             type="button"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white md:hidden"
+            className="relative z-10 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white md:hidden"
             onClick={() => setOpen((value) => !value)}
             aria-label="Toggle menu"
             aria-expanded={open}
