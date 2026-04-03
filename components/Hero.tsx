@@ -112,79 +112,56 @@ export function Hero() {
               initial={{ opacity: 0, y: 30, scale: 0.96 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ delay: 3.4, duration: 1.05 }}
-              className="relative flex min-h-[620px] flex-col justify-end gap-6 py-6 lg:items-end"
+              className="relative flex min-h-[620px] items-center justify-center py-6 lg:justify-end"
             >
               <motion.div
-                className="relative w-full max-w-[450px] pb-12 lg:pb-16"
+                className="relative w-full max-w-[470px]"
                 animate={{ y: [0, -6, 0] }}
                 transition={{ duration: 9.6, repeat: Infinity, ease: "easeInOut" }}
               >
-                <div className="surface-note rounded-[32px] p-3 shadow-[0_24px_80px_rgba(0,0,0,0.18)] backdrop-blur-[6px]">
-                  <div className="relative aspect-[16/10] overflow-hidden rounded-[24px] border border-white/10">
+                <div className="surface-note rounded-[34px] p-3 shadow-[0_28px_90px_rgba(0,0,0,0.18)] backdrop-blur-[4px]">
+                  <div className="relative aspect-[4/5] overflow-hidden rounded-[28px] border border-white/10">
                     <Image
-                      src="/sheet-preview-extension-main.png"
-                      alt="浏览器扩展预览面板截图"
+                      src="/profile-portrait.jpg"
+                      alt="李佳成个人照片"
                       fill
                       sizes="(max-width: 1024px) 100vw, 520px"
-                      className="object-cover object-center"
+                      className="object-cover object-top"
                       priority
                     />
-                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,10,16,0.02),rgba(8,10,16,0.18))]" />
+                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,10,16,0.03),rgba(8,10,16,0.18))]" />
+                    <div className="absolute left-4 top-4 rounded-full border border-white/14 bg-[rgba(10,10,16,0.28)] px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-white/74 backdrop-blur-[6px]">
+                      {brand.heroCardKicker}
+                    </div>
                   </div>
 
-                  <div className="flex items-start justify-between gap-4 px-3 pb-2 pt-4">
+                  <div className="grid gap-4 px-3 pb-2 pt-4 md:grid-cols-[1fr_auto] md:items-end">
                     <div>
-                      <p className="section-kicker !text-white/42">Selected Build</p>
-                      <h3 className="mt-2 font-display text-2xl text-white">Sheet Preview 扩展</h3>
-                      <p className="mt-2 max-w-[30ch] text-sm leading-7 text-white/62">
-                        用更轻的方式展示你的自动化工具作品，不再让右侧只剩一块空玻璃。
+                      <h3 className="font-display text-[2rem] leading-none text-white">{brand.heroCardTitle}</h3>
+                      <p className="mt-3 max-w-[34ch] text-sm leading-7 text-white/62">
+                        {brand.heroCardText}
                       </p>
                     </div>
-                    <span className="meta-chip hidden md:inline-flex">Tooling</span>
+                    <div className="flex flex-wrap gap-2 md:justify-end">
+                      {brand.heroCardTags.slice(0, 2).map((item) => (
+                        <span key={item} className="meta-chip">
+                          {item}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
-                <div className="absolute -bottom-14 -left-6 hidden w-[190px] rounded-[26px] border border-white/10 bg-[rgba(11,12,18,0.28)] p-3 shadow-[0_18px_70px_rgba(0,0,0,0.18)] backdrop-blur-[8px] lg:block">
-                  <div className="relative aspect-[4/5] overflow-hidden rounded-[18px] border border-white/10">
-                    <Image
-                      src="/sheet-preview-extension-features.png"
-                      alt="浏览器扩展功能说明截图"
-                      fill
-                      sizes="220px"
-                      className="object-cover object-top"
-                    />
+                <div className="absolute -bottom-8 -left-10 hidden w-[240px] rounded-[28px] border border-white/10 bg-[rgba(11,12,18,0.18)] p-5 shadow-[0_20px_70px_rgba(0,0,0,0.14)] backdrop-blur-[8px] lg:block">
+                  <p className="text-xs uppercase tracking-[0.22em] text-white/42">Current Focus</p>
+                  <p className="mt-3 font-display text-2xl leading-tight text-white">{brand.heroCardNote}</p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {brand.heroCardTags.map((item) => (
+                      <span key={item} className="meta-chip">
+                        {item}
+                      </span>
+                    ))}
                   </div>
-                  <p className="mt-3 text-xs uppercase tracking-[0.22em] text-white/42">Feature Notes</p>
-                </div>
-              </motion.div>
-
-              <motion.div
-                className="relative w-full max-w-[430px] rounded-[32px] border border-white/12 bg-[linear-gradient(180deg,rgba(14,16,24,0.34),rgba(10,10,14,0.12))] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.18)] backdrop-blur-[10px] md:p-8"
-                animate={{ y: [0, 8, 0] }}
-                transition={{ duration: 8.8, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-[#f6c88a]/50 to-transparent" />
-                <p className="font-display text-[0.68rem] uppercase tracking-[0.24em] text-white/44">
-                  {brand.heroCardKicker}
-                </p>
-                <h2 className="mt-4 max-w-[10ch] font-display text-3xl leading-[0.96] text-white md:text-5xl">
-                  {brand.heroCardTitle}
-                </h2>
-                <p className="mt-5 max-w-[28ch] text-sm leading-7 text-white/72">
-                  {brand.heroCardText}
-                </p>
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {brand.heroCardTags.map((item) => (
-                    <span
-                      key={item}
-                      className="rounded-full border border-white/12 bg-white/8 px-3 py-2 text-[11px] uppercase tracking-[0.18em] text-white/66"
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
-                <div className="mt-7 border-t border-white/8 pt-5">
-                  <p className="text-xs uppercase tracking-[0.22em] text-white/44">{brand.heroCardNote}</p>
                 </div>
               </motion.div>
             </motion.div>

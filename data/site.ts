@@ -10,12 +10,11 @@ export const siteContent = {
     heroSubtitle:
       "聚焦 Agent 工具调用、多模态图文对话和数据质量管控。做过数据构建、质检抽检、模型评测与 SOP 制定，也会用 AI 工具把重复流程做成自动化。",
     heroPillars: ["Agent 工具调用", "多模态数据构建", "质检与规则闭环"],
-    heroCardKicker: "Candidate Snapshot",
-    heroCardTitle: "能做数据构建，也能把质量体系落下来",
-    heroCardText:
-      "从基础标注员成长为 AI 训练师，覆盖文本与多模态两条线，擅长把规则、数据和效果串成闭环。",
-    heroCardTags: ["Agent", "多模态", "质量管控"],
-    heroCardNote: "杭州 · 随时到岗",
+    heroCardKicker: "AI TRAINER PROFILE",
+    heroCardTitle: "李佳成",
+    heroCardText: "聚焦 Agent、多模态数据构建与质量闭环，也会把重复流程做成自动化工具。",
+    heroCardTags: ["杭州", "随时到岗", "自动化提效"],
+    heroCardNote: "AI 训练师 / 模型评测 / 多模态数据构建",
     ctas: [
       { label: "查看项目", href: "#projects" },
       { label: "下载简历", href: "/li-jiacheng-ai-trainer-resume.docx", download: true },
@@ -148,26 +147,52 @@ export const siteContent = {
       "JSON / 数据处理",
     ],
   },
-  strengths: [
-    {
-      tag: "成长路径",
-      title: "从基础标注员走到 AI 训练师",
-      excerpt:
-        "1 年内完成从任务执行到数据构建、质检管控、规范制定的跨越，覆盖文本和多模态双方向，成长路径清晰，也更容易快速接手新项目。",
-    },
-    {
-      tag: "质量意识",
-      title: "能把抽象问题沉淀成可执行规则",
-      excerpt:
-        "擅长定位意图偏差、描述缺失、格式错误等高频问题，持续沉淀 Bad Case 库、Skip 规则和复核标准，推动质量体系真正落地。",
-    },
-    {
-      tag: "工具能力",
-      title: "会用 AI 工具把重复劳动自动化",
-      excerpt:
-        "熟练使用 Claude、Codex、ChatGPT、豆包、Kimi 等主流模型，能借助脚本和插件解决数据清洗、字段校验、素材整理等重复性任务。",
-    },
-  ],
+  automation: {
+    kicker: "灵感随笔",
+    title: "把工作里反复出现的低效，做成顺手的小工具。",
+    intro:
+      "除了数据构建和评测，我也会把工作中的重复动作拆出来，借助 AI 工具做成插件、脚本和小流程。它们未必要很大，但要足够顺手、足够省时间。",
+    cards: [
+      {
+        tag: "浏览器扩展",
+        title: "Sheet Preview",
+        excerpt:
+          "给 Google Sheets 和飞书表格做单元格内容预览，支持 Markdown、JSON、纯文本自动识别，减少反复点开和手动格式化的时间。",
+      },
+      {
+        tag: "自动化办公",
+        title: "把核查流程变成半自动",
+        excerpt:
+          "会把 JSON 校验、图片抓取、字段检查、内容清洗等步骤整理成小工具，降低重复劳动，也让质检更稳定。",
+      },
+      {
+        tag: "做法",
+        title: "先发现卡点，再做最小可用工具",
+        excerpt:
+          "我的工具思路不是为了炫技，而是围绕真实使用场景：哪里最费时间、最容易出错，就先把哪里做顺。",
+      },
+    ],
+    features: [
+      "单元格内容预览",
+      "Markdown / JSON 渲染",
+      "自动格式识别",
+      "拖拽面板",
+      "一键复制",
+      "快捷键唤起",
+    ],
+    showcase: [
+      {
+        src: "/sheet-preview-extension-main.png",
+        alt: "浏览器扩展预览面板截图",
+        label: "预览面板",
+      },
+      {
+        src: "/sheet-preview-extension-features.png",
+        alt: "浏览器扩展功能列表截图",
+        label: "功能说明",
+      },
+    ],
+  },
   contact: {
     outro: "如果你在招聘 AI 训练师，或正在推进 Agent / 多模态数据项目，我们可以直接聊任务设计、质量标准和结果提升。",
     email: "1308760795@qq.com",
@@ -189,6 +214,6 @@ export const sections = [
   { id: "about", label: "概况" },
   { id: "projects", label: "项目" },
   { id: "experience", label: "经历" },
-  { id: "strengths", label: "优势" },
+  { id: "writing", label: "灵感随笔" },
   { id: "contact", label: "联系" },
 ];
