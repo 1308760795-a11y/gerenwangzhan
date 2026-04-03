@@ -41,11 +41,11 @@ body::before {
   position: fixed;
   inset: -24px;
   background-image:
-    linear-gradient(180deg, rgba(9, 10, 14, 0.14), rgba(9, 10, 14, 0.22)),
+    linear-gradient(180deg, rgba(9, 10, 14, 0.06), rgba(9, 10, 14, 0.12)),
     url("/rose-background-hires.jpg");
   background-size: cover;
   background-position: center;
-  opacity: 0.96;
+  opacity: 1;
   z-index: -2;
   transform: translate3d(var(--bg-shift-x), var(--bg-shift-y), 0) scale(1.06);
   will-change: transform;
@@ -57,11 +57,11 @@ body::after {
   position: fixed;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(8, 8, 12, 0.26) 0%, rgba(8, 8, 12, 0.06) 22%, rgba(8, 8, 12, 0.18) 100%),
-    radial-gradient(circle at 50% 16%, rgba(255, 246, 236, 0.07), transparent 26%),
-    radial-gradient(circle at 82% 22%, rgba(246, 200, 138, 0.06), transparent 22%),
-    radial-gradient(circle at 20% 78%, rgba(176, 58, 96, 0.08), transparent 28%),
-    linear-gradient(90deg, rgba(9, 10, 14, 0.44) 0%, transparent 18%, transparent 82%, rgba(9, 10, 14, 0.44) 100%);
+    linear-gradient(180deg, rgba(8, 8, 12, 0.12) 0%, rgba(8, 8, 12, 0.02) 22%, rgba(8, 8, 12, 0.1) 100%),
+    radial-gradient(circle at 50% 16%, rgba(255, 246, 236, 0.08), transparent 26%),
+    radial-gradient(circle at 82% 22%, rgba(246, 200, 138, 0.05), transparent 22%),
+    radial-gradient(circle at 20% 78%, rgba(176, 58, 96, 0.05), transparent 28%),
+    linear-gradient(90deg, rgba(9, 10, 14, 0.2) 0%, transparent 14%, transparent 86%, rgba(9, 10, 14, 0.2) 100%);
   z-index: -1;
   pointer-events: none;
 }
@@ -88,13 +88,13 @@ select {
 }
 
 .glass-panel {
-  @apply relative overflow-hidden border shadow-panel backdrop-blur-[20px];
+  @apply relative overflow-hidden border shadow-panel backdrop-blur-[12px];
   border-color: var(--panel-edge);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
-    linear-gradient(180deg, rgba(8, 10, 16, 0.44), rgba(8, 10, 16, 0.26));
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015)),
+    linear-gradient(180deg, rgba(8, 10, 16, 0.26), rgba(8, 10, 16, 0.12));
   box-shadow:
-    0 30px 100px rgba(0, 0, 0, 0.34),
+    0 24px 80px rgba(0, 0, 0, 0.22),
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
@@ -159,8 +159,8 @@ select {
   @apply rounded-[26px] border px-5 py-5;
   border-color: rgba(255, 255, 255, 0.08);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)),
-    rgba(8, 10, 16, 0.22);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.012)),
+    rgba(8, 10, 16, 0.14);
 }
 
 .soft-grid {
@@ -179,7 +179,7 @@ select {
     linear-gradient(rgba(255,255,255,0.02), rgba(255,255,255,0.005)),
     radial-gradient(circle at 20% 20%, rgba(255,255,255,0.05), transparent 24%),
     radial-gradient(circle at 76% 18%, rgba(246, 200, 138, 0.08), transparent 20%);
-  opacity: 0.22;
+  opacity: 0.14;
   pointer-events: none;
 }
 
